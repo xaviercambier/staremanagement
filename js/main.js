@@ -9,6 +9,20 @@ $.fn.vAlign = function() {
     });
 };
 })(jQuery);
+
+function registerVideoHook() {
+	var iFrame = $('#vimeo-iframe').get(0);
+	var modal = $('#myModal1');
+	modal.on('hide.bs.modal', function (e) {
+		var message = {
+			"method": "pause"
+		};
+		iFrame.contentWindow.postMessage(message, '*');
+	})
+}
+
+$(document).ready(registerVideoHook);
+
 $(document).ready(function(){
 	var win_h = $(window).height();
 	function setHeight(){
